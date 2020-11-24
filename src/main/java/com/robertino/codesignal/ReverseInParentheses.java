@@ -38,14 +38,52 @@ Return inputString, with all the characters that were in parentheses reversed.
 public class ReverseInParentheses {
 
     public static void main(String[] args) {
-        String inputString = "foo(bar)baz";
+        String inputString = "foo(bar(baz))blim";
         String result = new ReverseInParentheses().reverseInParentheses(inputString);
         System.out.println(result);
     }
 
     String reverseInParentheses(String inputString) {
+        return calculateString(inputString);
+    }
 
+    String calculateString(String inputString) {
+        StringBuilder result = new StringBuilder();
 
-        return inputString;
+        boolean started = false;
+        int counter = 0;
+        int startIndex = -1;
+        int prevStart = 0;
+        for (int i = 0; i < inputString.length(); ++i) {
+            if(inputString.charAt(i) == '(') {
+                if (!started) {
+                    result.append(inputString, prevStart, i);
+                    started = true;
+                    startIndex = i;
+                }
+                ++counter;
+            }
+            else if (started && inputString.charAt(i) == ')') {
+                --counter;
+                if (counter == 0) {
+                    StringBuilder str = new StringBuilder(inputString.substring(startIndex + 1, i)).reverse();
+                    for(int j = 0; j < str.length(); ++j) {
+                        if (str.charAt(j) == '(') {
+                            str.setCharAt(j,')');
+                        }
+                        else if (str.charAt(j) == ')') {
+                            str.setCharAt(j,'(');
+                        }
+                    }
+                    result.append(calculateString(str.toString()));
+                    started = false;
+                    prevStart = i + 1;
+                }
+            }
+        }
+        if(prevStart < inputString.length() ) {
+            result.append(inputString.substring(prevStart));
+        }
+        return result.toString();
     }
 }
