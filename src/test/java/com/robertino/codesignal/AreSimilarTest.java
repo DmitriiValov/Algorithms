@@ -26,6 +26,7 @@ public class AreSimilarTest {
         int[] a = { 832, 998, 148, 570, 533, 561, 894, 147, 455, 279 };
         int[] b = { 832, 998, 148, 570, 533, 561, 455, 147, 894, 279 };
         assertThat(areSimilar.areSimilar(a, b)).isEqualTo(true);
+        assertThat(areSimilar.areSimilar2(a, b)).isEqualTo(true);
     }
 
     @Test
@@ -33,5 +34,6 @@ public class AreSimilarTest {
         int[] a = { 832, 998, 148, 570, 533, 561, 894, 279, 455, 147 };
         int[] b = { 832, 998, 148, 570, 533, 561, 455, 147, 894, 279 };
         assertThat(areSimilar.areSimilar(a, b)).isEqualTo(false);
+        assertThat(areSimilar.areSimilar2(a, b)).isEqualTo(false);
     }
 }

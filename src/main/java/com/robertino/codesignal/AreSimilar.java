@@ -49,6 +49,8 @@ b.length = a.length,
 true if a and b are similar, false otherwise.
  */
 
+import java.util.Arrays;
+
 public class AreSimilar {
 
     public boolean areSimilar(int[] a, int[] b) {
@@ -80,5 +82,18 @@ public class AreSimilar {
             return false;
         }
         return true;
+    }
+
+    boolean areSimilar2(int[] a, int[] b) {
+        int differences = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != b[i]) {
+                differences++;
+            }
+        }
+        Arrays.sort(a);
+        Arrays.sort(b);
+
+        return Arrays.equals(a, b) && differences < 3;
     }
 }
