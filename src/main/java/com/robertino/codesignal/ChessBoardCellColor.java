@@ -43,19 +43,6 @@ true if both cells have the same color, false otherwise.
 public class ChessBoardCellColor {
 
     boolean chessBoardCellColor(String cell1, String cell2) {
-        return (charToInt(cell1.charAt(0)) + Integer.parseInt(String.valueOf(cell1.charAt(1)))) % 2 ==
-                (charToInt(cell2.charAt(0)) + Integer.parseInt(String.valueOf(cell2.charAt(1)))) % 2;
-    }
-
-    int charToInt(char c) {
-        if(c == 'A') return 1;
-        else if(c == 'B') return 2;
-        else if(c == 'C') return 3;
-        else if(c == 'D') return 4;
-        else if(c == 'E') return 5;
-        else if(c == 'F') return 6;
-        else if(c == 'G') return 7;
-        else if(c == 'H') return 8;
-        else return 0;
+        return (cell1.charAt(0) + cell1.charAt(1)) % 2 == (cell2.charAt(0) + cell2.charAt(1)) % 2;
     }
 }
